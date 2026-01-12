@@ -2,6 +2,8 @@
 
 RunPod serverless endpoint for Chatterbox Multilingual TTS supporting 23 languages.
 
+**Version:** 1.0.1
+
 ## Supported Languages
 
 Arabic (ar), Danish (da), German (de), Greek (el), English (en), Spanish (es), Finnish (fi), French (fr), Hebrew (he), Hindi (hi), Italian (it), Japanese (ja), Korean (ko), Malay (ms), Dutch (nl), Norwegian (no), Polish (pl), Portuguese (pt), Russian (ru), Swedish (sv), Swahili (sw), Turkish (tr), Chinese (zh)
