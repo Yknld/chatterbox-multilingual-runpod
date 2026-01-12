@@ -104,6 +104,7 @@ def handler(event):
     
     try:
         start_time = time.time()
+        audio_tensor = None  # Initialize to avoid UnboundLocalError
         
         # Generate cache key
         cache_key = hashlib.sha256(
@@ -235,7 +236,7 @@ def handler(event):
         print(f"✅ Complete in {total_time}ms (generation: {generation_time}ms)")
         
         # Calculate actual audio duration (samples / sample_rate)
-        audio_duration_s = audio_tensor.shape[-1] / model.sr if audio_tensor.dim() >= 1 else 0
+        audio_duration_s = audio_tensor.shape[-1] / model.sr if audio_tensor is not None and audio_tensor.dim() >= 1 else 0
         
         return {
             "status": "success",
