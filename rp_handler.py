@@ -276,15 +276,18 @@ def initialize_model():
     hf_token = os.environ.get('HF_TOKEN') or os.environ.get('HUGGING_FACE_HUB_TOKEN')
     if hf_token:
         print("   Using HuggingFace token from environment")
+        # Login to HuggingFace to access gated models
+        try:
+            from huggingface_hub import login
+            login(token=hf_token)
+            print("   ✅ Logged in to HuggingFace")
+        except Exception as e:
+            print(f"   ⚠️  HuggingFace login failed: {e}")
     else:
         print("   ⚠️  No HF_TOKEN found - model download may fail if gated")
     
     try:
-        # Pass token if available
-        if hf_token:
-            model = ChatterboxMultilingualTTS.from_pretrained(device="cuda", token=hf_token)
-        else:
-            model = ChatterboxMultilingualTTS.from_pretrained(device="cuda")
+        model = ChatterboxMultilingualTTS.from_pretrained(device="cuda")
         print("✅ Model initialized successfully")
         return model
     except Exception as e:
